@@ -1,0 +1,38 @@
+{
+  "name": "contracts",
+  "version": "1.0.0",
+  "files": [
+    "/contracts/**/*.sol",
+    "/build/contracts/*.json"
+  ],  
+  "description": "NFTs2Me.com contracts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nfts2me/contracts.git"
+  },
+  "keywords": [
+    "ethereum",
+    "smart-contracts",
+    "nft",
+    "nfts",
+    "nfts2me"
+  ],
+  "author": "agsola@nfts2me.com",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/nfts2me/contracts/issues"
+  },
+  "homepage": "https://nfts2me.com",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.12.4"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.0",
+    "@openzeppelin/contracts-upgradeable": "^4.8.0"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@nfts2me/contracts",
+  "description": "NFTs2Me.com contracts",
+  "version": "1.0.0",
+  "files": [
+    "**/*.sol",
+    "/build/contracts/*.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nfts2me/contracts.git"
+  },
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "smart",
+    "contracts",
+    "smart-contracts",
+    "nft",
+    "nfts",
+    "nfts2me"
+  ],
+  "author": "agsola@nfts2me.com",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/nfts2me/contracts/issues"
+  },
+  "homepage": "https://nfts2me.com"
+}
