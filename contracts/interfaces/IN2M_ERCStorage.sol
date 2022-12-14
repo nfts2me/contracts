@@ -178,6 +178,10 @@ interface IN2M_ERCStorage is Readme {
     /// @notice Invalid drop date
     error InvalidDropDate();
 
+    /// @notice Operator address is filtered
+    error AddressFiltered(address filtered);
+
+
     struct RandomTicket {
         uint256 amount;
         uint256 blockNumberToReveal;

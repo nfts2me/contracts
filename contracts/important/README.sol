@@ -43,4 +43,6 @@ pragma solidity ^0.8.17;
 /// @custom:security-contact security@nfts2me.com
 /// @custom:terms-of-service https://nfts2me.com/terms-of-service/
 /// @custom:website https://nfts2me.com/
-interface Readme { }
+interface Readme {
+    function n2mVersion() external pure returns (uint256);
+ }
