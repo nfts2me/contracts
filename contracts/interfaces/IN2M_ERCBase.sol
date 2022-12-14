@@ -1,4 +1,4 @@
-/** ----------------------------------------------------------------------------
+/** ---------------------------------------------------------------------------- //
  *                                                                               //
  *                                       .:::.                                   //
  *                                    .:::::::.                                  //
@@ -64,6 +64,7 @@ import "@openzeppelin/contracts-upgradeable/interfaces/IERC2981Upgradeable.sol";
 import "./IN2M_ERCStorage.sol";
 
 interface IN2M_ERCBase is IERC2981Upgradeable, IN2M_ERCStorage {
+    /// @notice To be called to create the collection. Can only be called once.
     function initialize
     (
         string memory tokenName,

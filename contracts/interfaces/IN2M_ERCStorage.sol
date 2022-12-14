@@ -1,4 +1,4 @@
-/** ----------------------------------------------------------------------------
+/** ---------------------------------------------------------------------------- //
  *                                                                               //
  *                                       .:::.                                   //
  *                                    .:::::::.                                  //
@@ -62,7 +62,7 @@ pragma solidity ^0.8.17;
 
 import "../important/README.sol";
 
-interface IN2M_ERCStorage {
+interface IN2M_ERCStorage is Readme {
     /// @notice This event is emitted when a token is minted using an affiliate
     /// @param affiliate The affiliate address
     event AffiliateSell(address indexed affiliate);
@@ -215,9 +215,6 @@ interface IN2M_ERCStorage {
         DISABLED_NOT_INITIALIZED,
         DISABLED_EXISTS          
     }
-
-    /// @notice Current version of the nfts2me.com contracts.
-    function n2mVersion() external pure returns (uint256);
 
     /// @notice Returns true if the metadata is fixed and immutable. If the metadata hasn't been fixed yet it will return false. Once fixed, it can't be changed by anyone.
     function isMetadataFixed() external view returns (bool);

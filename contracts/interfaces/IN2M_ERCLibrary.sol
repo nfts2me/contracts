@@ -1,4 +1,4 @@
-/** ----------------------------------------------------------------------------
+/** ---------------------------------------------------------------------------- //
  *                                                                               //
  *                                       .:::.                                   //
  *                                    .:::::::.                                  //
@@ -83,7 +83,6 @@ interface IN2M_ERCLibrary is IN2M_ERCStorage {
     function isOperatorFilterRegistryEnabled() external view returns (bool);
     function enableOperatorFilterRegistry() external;
     function disableOperatorFilterRegistry() external;
-
     function collectionSize() external view returns (uint256);
     function randomTickets(address affiliate) external view returns (uint amount, uint blockNumberToReveal);
     function affiliatesInfo(address affiliate) external view returns (bool enabled, uint16 affiliatePercentage, uint16 userDiscount);
