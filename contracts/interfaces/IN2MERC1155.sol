@@ -67,5 +67,8 @@ import "./IN2M_ERCCommon.sol";
 interface IN2MERC1155 is IERC1155MetadataURI, IN2M_ERCCommon {
     function supportsInterface(bytes4 interfaceId) external view override(IERC165, IERC165Upgradeable) returns (bool);
     function balanceOf(address owner) external view returns (uint256 balance);
+    function totalSupply(uint256 id) external view returns (uint256);
+    function exists(uint256 id) external view returns (bool);
+    function getSupplies(uint256 startId, uint256 endId) external view returns (uint256[] memory supplies, uint256 blockNumber, uint256 blockTimestamp);
 }
 

@@ -147,17 +147,17 @@ interface IN2M_ERCBase is IERC2981Upgradeable, IN2M_ERCStorage {
     /// @param soulbound True if the NFT is a Soulbound Token (SBT). If set, it can't be transferred.
     function mintCustomURITo(address to, bytes32 customURICIDHash, bool soulbound) external payable;
 
-    /// @notice Only owner can call this function. Free of charge. Mints sizeof(`to`) to `to` addresses. Requires minting type to be `sequential`.
+    /// @notice Only owner can call this function. Free of charge. Mints sizeof(`to`) to `to` addresses. Requires `minting type` to be `sequential`.
     /// @param to The addresses of the NFTs receivers
     /// @param soulbound True if the NFT is a Soulbound Token (SBT). If set, it can't be transferred.
     function airdropSequential(address[] memory to, bool soulbound) external payable;
 
-    /// @notice Only owner can call this function. Free of charge. Mints sizeof(`to`) to `to` addresses with random tokenIds. Requires minting type to be `random`.
+    /// @notice Only owner can call this function. Free of charge. Mints sizeof(`to`) to `to` addresses with random tokenIds. Requires `minting type` to be `random`.
     /// @param to The addresses of the NFTs receivers
     /// @param soulbound True if the NFT is a Soulbound Token (SBT). If set, it can't be transferred.
     function airdropRandom(address[] memory to, bool soulbound) external payable;
 
-    /// @notice Only owner can call this function. Free of charge. Mints sizeof(`to`) to `to` addresses with specified tokenIds. Requires minting type to be `specify`.
+    /// @notice Only owner can call this function. Free of charge. Mints sizeof(`to`) to `to` addresses with specified tokenIds. Requires `minting type` to be `specify`.
     /// @param to The addresses of the NFTs receivers
     /// @param tokenIds An array of the specified tokens. They must not be minted, otherwise, it will revert.
     /// @param soulbound True if the NFT is a Soulbound Token (SBT). If set, it can't be transferred.
