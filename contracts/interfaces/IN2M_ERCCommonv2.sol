@@ -68,6 +68,9 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
     /// @param affiliate The affiliate address
     event AffiliateSell(address indexed affiliate);
 
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+
+
     /// @notice Error thrown when trying to mint a token with a given id which is already minted
     error TokenAlreadyMinted();
 
@@ -187,6 +190,8 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
 
     error OperatorNotAllowed(address operator);
 
+    error OnlyFactory();
+
     enum TokenUriType {
         BASE_URI_CID,
         PLACEHOLDER_CID,
@@ -204,6 +209,7 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
         string baseURIOrPlaceholderString;
         RevenueAddress[] revenueAddresses;
         uint256[] dropAndEndDateTimestamps;
+        SalePhase initPhase;
     }
 
     struct InitParams {
@@ -284,7 +290,6 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
         bytes32 baseURIorPlaceholderCIDHash,
         uint32 iTotalSupply,
         uint16 iRoyaltyFee,
-        SalePhase initPhase,
         address initialOwner,
         bytes calldata extraCollectionInformation
     ) external payable;
@@ -440,8 +445,8 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
     function mintingType() external view returns (MintingType);
     function saleDates() external view returns (uint256 dropDateTimestamp, uint256 endDateTimestamp);
     function isOpen() external view returns (bool);
+    function transferOwnership(address from, address to) external payable;
     function ownerMaxRevenue() external view returns (uint256);
-
     function removeFees(bytes calldata signature) external payable;
 
 
