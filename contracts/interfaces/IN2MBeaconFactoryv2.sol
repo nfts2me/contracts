@@ -58,10 +58,10 @@
  * ----------------------------------------------------------------------------- */
 
 /// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.17;
 
-interface IN2MCrossFactory {
-    function getN2MTreasuryAddress() external pure returns (address);
-    function ownerOf(uint256 tokenId) external view returns (address);
-    function strictOwnerOf(uint256 tokenId) external view returns (address);
+interface IN2MBeaconFactory {
+    function getERC721Implementation() external view returns (address);
+    function getERC1155Implementation() external view returns (address);
+    function getImplementation(bytes32 implementationType) external view returns (address);
 }

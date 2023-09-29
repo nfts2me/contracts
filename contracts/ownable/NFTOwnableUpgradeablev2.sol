@@ -58,10 +58,63 @@
  * ----------------------------------------------------------------------------- */
 
 /// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.17;
 
-interface IN2MCrossFactory {
-    function getN2MTreasuryAddress() external pure returns (address);
-    function ownerOf(uint256 tokenId) external view returns (address);
-    function strictOwnerOf(uint256 tokenId) external view returns (address);
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol";
+
+/// @title NFTs2Me.com Smart Contracts
+/// @author The NFTs2Me Team
+/// @notice Read our terms of service
+/// @custom:security-contact security@nfts2me.com
+/// @custom:terms-of-service https://nfts2me.com/terms-of-service/
+/// @custom:website https://nfts2me.com/
+abstract contract NFTOwnableUpgradeable is Initializable, ContextUpgradeable {
+    /**
+     * @dev Throws if called by any account other than the owner.
+     */
+    modifier onlyOwner() {
+        _checkOwner();
+        _;
+    }
+
+    modifier onlyStrictOwner() {
+        _checkStrictOwner();
+        _;
+    }
+
+    modifier onlyOwnerOrN2M() {
+        _checkOwnerOrN2M();
+        _;
+    }
+
+    modifier onlyN2M() {
+        _checkN2M();
+        _;
+    }
+
+    /// @notice Returns the address of the current collection owner.
+    /// @return The address of the owner.
+    function owner() public view virtual returns (address);
+    function _strictOwner() internal view virtual returns (address);
+    function _getMintFeeInformation() internal view virtual returns (uint256 mintFee, address feeRecipient);
+
+    function _checkOwner() internal view virtual {
+        require(owner() == msg.sender, "Ownable: caller is not the owner");
+    }
+
+    function _checkStrictOwner() internal view virtual {
+        require(_strictOwner() == msg.sender, "Ownable: caller is not the owner");
+    }
+
+    function _checkOwnerOrN2M() internal view virtual {
+        (, address feeRecipient) = _getMintFeeInformation();
+        require(owner() == msg.sender || feeRecipient == msg.sender, "Ownable: caller is not the owner");
+    }
+
+    function _checkN2M() internal view virtual {
+        (, address feeRecipient) = _getMintFeeInformation();
+        require(feeRecipient == msg.sender, "Ownable: caller is not the owner");
+    }
+
 }
