@@ -60,7 +60,7 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-import "@openzeppelin/contracts-upgradeable/interfaces/IERC2981Upgradeable.sol";
+import "../openzeppelin-contracts-upgradeable-v4/interfaces/IERC2981Upgradeable.sol";
 import "./IN2M_ERCStorage.sol";
 
 interface IN2M_ERCBase is IERC2981Upgradeable, IN2M_ERCStorage {

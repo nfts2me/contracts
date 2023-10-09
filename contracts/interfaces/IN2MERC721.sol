@@ -60,9 +60,9 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
-import "@openzeppelin/contracts/governance/utils/IVotes.sol";
+import "../openzeppelin-contracts/token/ERC721/IERC721.sol";
+import "../openzeppelin-contracts/token/ERC721/extensions/IERC721Metadata.sol";
+import "../openzeppelin-contracts/governance/utils/IVotes.sol";
 import "./IN2M_ERCCommon.sol";
 
 interface IN2MERC721 is IERC721Metadata, IN2M_ERCCommon, IVotes {

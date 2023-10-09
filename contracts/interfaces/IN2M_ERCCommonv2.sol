@@ -60,7 +60,7 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-import "@openzeppelin/contracts-upgradeable/interfaces/IERC2981Upgradeable.sol";
+import "../openzeppelin-contracts-upgradeable/interfaces/IERC2981Upgradeable.sol";
 import "../important/README.sol";
 
 interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
@@ -117,7 +117,7 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
     error RoyaltyFeeTooHigh();
 
     /// @notice Invalid input. Total supply must be greater than zero
-    error TotalSupplyMustBeGreaterThanZero();
+    error InvadlidCollectionSize();
 
     /// @notice Can't set BaseURI and Placeholder at the same time
     error CantSetBaseURIAndPlaceholderAtTheSameTime();
@@ -428,6 +428,7 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
     function setDropDate(uint256 dropDateTimestamp) external payable;
     function setDropAndEndDate(uint256 dropDateTimestamp, uint256 endDateTimestamp) external payable;
     function setMaxPerAddress(uint16 newMaxPerAddress) external payable;
+    function reduceCollectionSize(uint32 newCollectionSize) external payable;
     function isOperatorFilterRegistryEnabled() external view returns (bool);
     function enableOperatorFilterRegistry() external payable;
     function disableOperatorFilterRegistry() external payable;
