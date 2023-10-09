@@ -430,7 +430,7 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
     function setMaxPerAddress(uint16 newMaxPerAddress) external payable;
     function reduceCollectionSize(uint32 newCollectionSize) external payable;
     function isOperatorFilterRegistryEnabled() external view returns (bool);
-    function enableOperatorFilterRegistry() external payable;
+    // function enableOperatorFilterRegistry() external payable;
     function disableOperatorFilterRegistry() external payable;
     function collectionSize() external view returns (uint256);
     function affiliatesInfo(address affiliate) external view returns (bool enabled, uint16 affiliatePercentage, uint16 userDiscount);

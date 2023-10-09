@@ -60,8 +60,8 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-import "../openzeppelin-contracts-upgradeable/proxy/utils/Initializable.sol";
-import "../openzeppelin-contracts-upgradeable/utils/ContextUpgradeable.sol";
+import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts/utils/Context.sol";
 
 /// @title NFTs2Me.com Smart Contracts
 /// @author The NFTs2Me Team
@@ -69,7 +69,7 @@ import "../openzeppelin-contracts-upgradeable/utils/ContextUpgradeable.sol";
 /// @custom:security-contact security@nfts2me.com
 /// @custom:terms-of-service https://nfts2me.com/terms-of-service/
 /// @custom:website https://nfts2me.com/
-abstract contract NFTOwnableUpgradeable is Initializable, ContextUpgradeable {
+abstract contract NFTOwnable is Initializable, Context {
     /**
      * @dev Throws if called by any account other than the owner.
      */
