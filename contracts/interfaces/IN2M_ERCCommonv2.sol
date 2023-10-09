@@ -201,7 +201,6 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
 
     struct ExtraCollectionInformation {
         address erc20PaymentAddress;
-        MintingType mintingType;
         bool soulboundCollection;
         TokenUriType uriType;
         address dynamicNFTAddress;
@@ -264,7 +263,7 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
         RESERVED1,
         RESERVED2,
         RESERVED3,
-        SEQUENTIAL_OPEN_EDITION // NOT REAL MINTING TYPE. JUST FOR INTERNAL USE
+        SEQUENTIAL_EDITIONS // NOT REAL MINTING TYPE. JUST FOR INTERNAL USE
     }
 
     enum OperatorFilterStatus { 
@@ -284,12 +283,13 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
     /// @notice To be called to create the collection. Can only be called once.
     function initialize
     (
-        string memory tokenName,
-        string memory tokenSymbol,
-        uint256 iMintPrice,
+        string memory name,
+        string memory symbol,
+        uint256 mintPrice,
         bytes32 baseURIorPlaceholderCIDHash,
-        uint32 iTotalSupply,
-        uint16 iRoyaltyFee,
+        uint32 totalSupply,
+        uint16 royaltyFee,
+        MintingType mintingType,
         address initialOwner,
         bytes calldata extraCollectionInformation
     ) external payable;
