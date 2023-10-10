@@ -60,10 +60,10 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-import "../openzeppelin-contracts-upgradeable/interfaces/IERC2981Upgradeable.sol";
+import {IERC2981} from "@openzeppelin/contracts/interfaces/IERC2981.sol";
 import "../important/README.sol";
 
-interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
+interface IN2M_ERCCommon is IERC2981, Readme {
     /// @notice This event is emitted when a token is minted using an affiliate
     /// @param affiliate The affiliate address
     event AffiliateSell(address indexed affiliate);
@@ -206,6 +206,7 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
         address dynamicNFTAddress;
         address dynamicPriceAddress;
         string baseURIOrPlaceholderString;
+        string collectionDescription;
         RevenueAddress[] revenueAddresses;
         uint256[] dropAndEndDateTimestamps;
         SalePhase initPhase;
@@ -397,9 +398,13 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
         bool soulbound,
         bytes calldata signature) payable external;
 
-    /// @notice Returns the minting price of one NFT.
-    /// @return Mint price for one NFT in native coin or ERC-20.
-    function mintPrice() external view returns (uint256);
+    /// @notice Returns the minting fee of `amount` NFT.
+    /// @return Mint price for `amount` NFTs in native coin or ERC-20.
+    function mintFee(uint256 amount) external view returns (uint256);
+
+    /// @notice Returns the platform fee of one NFT.
+    /// @return Platform for one NFT in native coin.
+    function platformFee() external view returns (uint256);
 
     /// @notice Returns the current total supply.
     /// @return Current total supply.
@@ -412,7 +417,7 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
     
     function setAndRevealBaseURI(bytes32 baseURICIDHash) external payable;
     function setAndRevealBaseURIString(string memory baseURIString) external payable;
-    function changeMintPrice(uint256 newMintPrice) external;
+    function changeMintFee(uint256 newMintFee) external;
     function contractURI() external view returns (string memory);
     function setContractURI(bytes32 newContractURIMetadataCIDHash) external;
     function setAffiliatesPercentageAndDiscount(uint16 userDiscount, uint16 affiliatePercentage, address affiliateAddress) external;
@@ -448,7 +453,7 @@ interface IN2M_ERCCommon is IERC2981Upgradeable, Readme {
     function isOpen() external view returns (bool);
     function transferOwnership(address from, address to) external payable;
     function ownerMaxRevenue() external view returns (uint256);
-    function removeFees(bytes calldata signature) external payable;
+    function removePlatformFee(bytes calldata signature) external payable;
 
 
 }

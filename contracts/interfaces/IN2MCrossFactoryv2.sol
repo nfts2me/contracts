@@ -61,7 +61,7 @@
 pragma solidity ^0.8.20;
 
 interface IN2MCrossFactory {
-    function mintFeeInformation() external view returns (uint256 mintFee, address feeRecipient);
+    // function mintFeeInformation() external view returns (uint256 mintFee, address feeRecipient);
     function getN2MTreasuryAddress() external pure returns (address);
     function ownerOf(uint256 tokenId) external view returns (address);
     function strictOwnerOf(uint256 tokenId) external view returns (address);

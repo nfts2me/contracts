@@ -70,6 +70,8 @@ import "@openzeppelin/contracts/utils/Context.sol";
 /// @custom:terms-of-service https://nfts2me.com/terms-of-service/
 /// @custom:website https://nfts2me.com/
 abstract contract NFTOwnable is Initializable, Context {
+    error OwnableUnauthorizedAccount(address account);
+
     /**
      * @dev Throws if called by any account other than the owner.
      */
@@ -83,13 +85,13 @@ abstract contract NFTOwnable is Initializable, Context {
         _;
     }
 
-    modifier onlyOwnerOrN2M() {
-        _checkOwnerOrN2M();
+    modifier onlyOwnerOrN2M(address feeRecipient) {
+        _checkOwnerOrN2M(feeRecipient);
         _;
     }
 
-    modifier onlyN2M() {
-        _checkN2M();
+    modifier onlyN2M(address feeRecipient) {
+        _checkN2M(feeRecipient);
         _;
     }
 
@@ -97,24 +99,29 @@ abstract contract NFTOwnable is Initializable, Context {
     /// @return The address of the owner.
     function owner() public view virtual returns (address);
     function _strictOwner() internal view virtual returns (address);
-    function _getMintFeeInformation() internal view virtual returns (uint256 mintFee, address feeRecipient);
 
     function _checkOwner() internal view virtual {
-        require(owner() == msg.sender, "Ownable: caller is not the owner");
+        if (owner() != msg.sender) {
+            revert OwnableUnauthorizedAccount(msg.sender);
+        }
     }
 
     function _checkStrictOwner() internal view virtual {
-        require(_strictOwner() == msg.sender, "Ownable: caller is not the owner");
+        if (_strictOwner() != msg.sender) {
+            revert OwnableUnauthorizedAccount(msg.sender);
+        }
     }
 
-    function _checkOwnerOrN2M() internal view virtual {
-        (, address feeRecipient) = _getMintFeeInformation();
-        require(owner() == msg.sender || feeRecipient == msg.sender, "Ownable: caller is not the owner");
+    function _checkOwnerOrN2M(address feeRecipient) internal view virtual {
+        if (owner() != msg.sender && feeRecipient != msg.sender) {
+            revert OwnableUnauthorizedAccount(msg.sender);
+        }
     }
 
-    function _checkN2M() internal view virtual {
-        (, address feeRecipient) = _getMintFeeInformation();
-        require(feeRecipient == msg.sender, "Ownable: caller is not the owner");
+    function _checkN2M(address feeRecipient) internal view virtual {
+        if (feeRecipient != msg.sender) {
+            revert OwnableUnauthorizedAccount(msg.sender);
+        }
     }
 
 }
