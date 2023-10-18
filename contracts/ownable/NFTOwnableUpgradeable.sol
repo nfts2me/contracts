@@ -60,8 +60,8 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-import "../openzeppelin-contracts-upgradeable-v4/proxy/utils/Initializable.sol";
-import "../openzeppelin-contracts-upgradeable-v4/utils/ContextUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable-v4/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable-v4/utils/ContextUpgradeable.sol";
 
 /// @title NFTs2Me.com Smart Contracts
 /// @author The NFTs2Me Team

@@ -60,8 +60,8 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-import "../openzeppelin-contracts/token/ERC1155/IERC1155.sol";
-import "../openzeppelin-contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol";
+import "@openzeppelin/contracts-v4/token/ERC1155/IERC1155.sol";
+import "@openzeppelin/contracts-v4/token/ERC1155/extensions/IERC1155MetadataURI.sol";
 import "./IN2M_ERCCommon.sol";
 
 interface IN2MERC1155 is IERC1155MetadataURI, IN2M_ERCCommon {

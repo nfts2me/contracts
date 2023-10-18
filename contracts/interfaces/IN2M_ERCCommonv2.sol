@@ -261,9 +261,6 @@ interface IN2M_ERCCommon is IERC2981, Readme {
         RANDOM,
         SPECIFY, 
         CUSTOM_URI,
-        RESERVED1,
-        RESERVED2,
-        RESERVED3,
         SEQUENTIAL_EDITIONS // NOT REAL MINTING TYPE. JUST FOR INTERNAL USE
     }
 
@@ -417,12 +414,12 @@ interface IN2M_ERCCommon is IERC2981, Readme {
     
     function setAndRevealBaseURI(bytes32 baseURICIDHash) external payable;
     function setAndRevealBaseURIString(string memory baseURIString) external payable;
-    function changeMintFee(uint256 newMintFee) external;
+    function changeMintFee(uint256 newMintFee) external payable;
     function contractURI() external view returns (string memory);
-    function setContractURI(bytes32 newContractURIMetadataCIDHash) external;
+    function setContractURI(bytes32 newContractURIMetadataCIDHash) external payable;
     function setAffiliatesPercentageAndDiscount(uint16 userDiscount, uint16 affiliatePercentage, address affiliateAddress) external;
-    function affiliateWithdraw(address affiliate) external;
-    function withdrawERC20(address erc20Address) external;
+    function affiliateWithdraw(address affiliate) external payable;
+    function withdrawERC20(address erc20Address) external payable;
     //function withdrawERC20Pro(uint256 signatureExpireDate, uint n2mFee, address erc20Address, bytes calldata signature) external;
     function withdraw() external payable;
     //function withdrawPro(uint256 signatureExpireDate, uint256 n2mFee, bytes calldata signature) external;
@@ -435,7 +432,7 @@ interface IN2M_ERCCommon is IERC2981, Readme {
     function setMaxPerAddress(uint16 newMaxPerAddress) external payable;
     function reduceCollectionSize(uint32 newCollectionSize) external payable;
     function isOperatorFilterRegistryEnabled() external view returns (bool);
-    // function enableOperatorFilterRegistry() external payable;
+    function whitelistOperators(address[] calldata operators) external payable;
     function disableOperatorFilterRegistry() external payable;
     function collectionSize() external view returns (uint256);
     function affiliatesInfo(address affiliate) external view returns (bool enabled, uint16 affiliatePercentage, uint16 userDiscount);
