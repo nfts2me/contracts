@@ -196,7 +196,8 @@ interface IN2M_ERCCommon is IERC2981, Readme {
         BASE_URI_CID,
         PLACEHOLDER_CID,
         BASEURI_STRING,
-        DYNAMIC_NFT
+        DYNAMIC_NFT,
+        CUSTOM_URI
     }
 
     struct ExtraCollectionInformation {

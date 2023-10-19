@@ -60,12 +60,11 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
-import "./IN2M_ERCCommonv2.sol";
+import {IERC721Metadata} from "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
+import {IERC721Errors} from "@openzeppelin/contracts/interfaces/draft-IERC6093.sol";
+import {IN2M_ERCCommon} from "./IN2M_ERCCommonv2.sol";
 
-interface IN2MERC721 is IERC721Metadata, IN2M_ERCCommon {
+interface IN2MERC721 is IERC721Errors, IERC721Metadata, IN2M_ERCCommon {
     function name() external view override(IERC721Metadata, IN2M_ERCCommon) returns (string memory);
     function tokenURI(uint256 tokenId) external view override(IERC721Metadata, IN2M_ERCCommon) returns (string memory);
     function symbol() external view override(IERC721Metadata, IN2M_ERCCommon) returns (string memory); // IN2M_ERCBase, ERC721Upgradeable
