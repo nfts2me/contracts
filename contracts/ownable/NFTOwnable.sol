@@ -85,11 +85,6 @@ abstract contract NFTOwnable is Initializable, Context {
         _;
     }
 
-    modifier onlyOwnerOrN2M(address feeRecipient) {
-        _checkOwnerOrN2M(feeRecipient);
-        _;
-    }
-
     modifier onlyN2M(address feeRecipient) {
         _checkN2M(feeRecipient);
         _;
@@ -108,12 +103,6 @@ abstract contract NFTOwnable is Initializable, Context {
 
     function _checkStrictOwner() internal view virtual {
         if (_strictOwner() != msg.sender) {
-            revert OwnableUnauthorizedAccount(msg.sender);
-        }
-    }
-
-    function _checkOwnerOrN2M(address feeRecipient) internal view virtual {
-        if (owner() != msg.sender && feeRecipient != msg.sender) {
             revert OwnableUnauthorizedAccount(msg.sender);
         }
     }

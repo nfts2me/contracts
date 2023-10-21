@@ -402,7 +402,7 @@ interface IN2M_ERCCommon is IERC2981, Readme {
 
     /// @notice Returns the platform fee of one NFT.
     /// @return Platform for one NFT in native coin.
-    function platformFee() external view returns (uint256);
+    function protocolFee() external view returns (uint256);
 
     /// @notice Returns the current total supply.
     /// @return Current total supply.
@@ -451,7 +451,7 @@ interface IN2M_ERCCommon is IERC2981, Readme {
     function isOpen() external view returns (bool);
     function transferOwnership(address from, address to) external payable;
     function ownerMaxRevenue() external view returns (uint256);
-    function removePlatformFee(bytes calldata signature) external payable;
+    function removeProtocolFee(bytes calldata signature) external payable;
 
 
 }
