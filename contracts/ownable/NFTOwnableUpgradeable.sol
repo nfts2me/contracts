@@ -58,7 +58,7 @@
  * ----------------------------------------------------------------------------- */
 
 /// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.21;
 
 import "@openzeppelin/contracts-upgradeable-v4/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable-v4/utils/ContextUpgradeable.sol";

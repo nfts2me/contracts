@@ -35,7 +35,7 @@
  * ----------------------------------------------------------------------------- */
 
 /// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.21;
 
 /// @title NFTs2Me.com Smart Contracts README
 /// @author The NFTs2Me Team

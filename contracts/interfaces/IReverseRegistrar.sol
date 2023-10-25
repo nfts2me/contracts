@@ -58,7 +58,7 @@
  * ----------------------------------------------------------------------------- */
 
 /// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.21;
 
 interface IReverseRegistrar {
     function setDefaultResolver(address resolver) external;

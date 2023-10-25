@@ -58,7 +58,7 @@
  * ----------------------------------------------------------------------------- */
 
 /// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.21;
 
 import {IERC2981} from "@openzeppelin/contracts/interfaces/IERC2981.sol";
 import "../important/README.sol";
@@ -213,31 +213,6 @@ interface IN2M_ERCCommon is IERC2981, Readme {
         SalePhase initPhase;
     }
 
-    struct InitParams {
-        string tokenName;
-        string tokenSymbol;
-        uint256 mintPrice;
-        RevenueAddress[] revenueAddresses;
-        bytes32 baseURIorPlaceholderCIDHash;
-        uint32 totalSupply;
-        uint16 royaltyFee;
-        bool cidIsPlaceholder;
-        bool soulboundCollection;
-        SalePhase initPhase;
-        MintingType mintingType;
-        address erc20PaymentAddress;
-
-        // Falta aquí el extra
-        // extra de string URI
-        // extra de dynamic NFT
-        bytes extraInformation;
-    }
-
-    struct RandomTicket {
-        uint256 amount;
-        uint256 blockNumberToReveal;
-    }
-
     struct RevenueAddress {
         address to;
         uint16 percentage;
@@ -272,8 +247,6 @@ interface IN2M_ERCCommon is IERC2981, Readme {
 
     /// @notice Returns true if the metadata is fixed and immutable. If the metadata hasn't been fixed yet it will return false. Once fixed, it can't be changed by anyone.
     function isMetadataFixed() external view returns (bool);
-
-
 
     /// @notice Returns the address of the current collection owner.
     /// @return The address of the owner.
@@ -412,7 +385,6 @@ interface IN2M_ERCCommon is IERC2981, Readme {
     /// @return Max per address allowed.
     function maxPerAddress() external view returns (uint16);
 
-    
     function setAndRevealBaseURI(bytes32 baseURICIDHash) external payable;
     function setAndRevealBaseURIString(string memory baseURIString) external payable;
     function changeMintFee(uint256 newMintFee) external payable;
@@ -421,11 +393,7 @@ interface IN2M_ERCCommon is IERC2981, Readme {
     function setAffiliatesPercentageAndDiscount(uint16 userDiscount, uint16 affiliatePercentage, address affiliateAddress) external;
     function affiliateWithdraw(address affiliate) external payable;
     function withdrawERC20(address erc20Address) external payable;
-    //function withdrawERC20Pro(uint256 signatureExpireDate, uint n2mFee, address erc20Address, bytes calldata signature) external;
     function withdraw() external payable;
-    //function withdrawPro(uint256 signatureExpireDate, uint256 n2mFee, bytes calldata signature) external;
-    // function setReverseENSName(address rerverseResolver, string calldata collectionENSName) external;
-    // function initializeAndSetReverseENSName(address resolver, string calldata collectionENSName) external;
     function changePlaceholderImageCID(bytes32 newPlaceholderImageCIDHash) external payable;
     function setPhase(SalePhase newPhase) external payable;
     function setDropDate(uint256 dropDateTimestamp) external payable;
@@ -452,7 +420,21 @@ interface IN2M_ERCCommon is IERC2981, Readme {
     function transferOwnership(address from, address to) external payable;
     function ownerMaxRevenue() external view returns (uint256);
     function removeProtocolFee(bytes calldata signature) external payable;
-
-
 }
 
+interface IN2M_ERCCommonv1 {
+    function initialize
+    (
+        string memory tokenName,
+        string memory tokenSymbol,
+        uint256 iMintPrice,
+        bytes32 baseURICIDHash,
+        bytes32 placeholderImageCIDHash,
+        IN2M_ERCCommon.RevenueAddress[] calldata revenueAddresses,
+        address iErc20PaymentAddress,
+        uint32 iTotalSupply,
+        uint16 iRoyaltyFee,
+        bool soulboundCollection,
+        IN2M_ERCCommon.MintingType iMintingType
+    ) external payable;
+}

@@ -58,7 +58,7 @@
  * ----------------------------------------------------------------------------- */
 
 /// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.21;
 
 import "@openzeppelin/contracts-v4/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts-v4/token/ERC721/extensions/IERC721Metadata.sol";

@@ -58,7 +58,7 @@
  * ----------------------------------------------------------------------------- */
 
 /// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.21;
 
 interface IN2MCrossFactory {
     function getN2MTreasuryAddress() external pure returns (address);

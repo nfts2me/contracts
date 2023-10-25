@@ -58,7 +58,7 @@
  * ----------------------------------------------------------------------------- */
 
 /// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.21;
 
 interface IN2MCrossFactory {
     // function mintFeeInformation() external view returns (uint256 mintFee, address feeRecipient);
