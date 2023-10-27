@@ -70,6 +70,10 @@ interface IN2M_ERCCommon is IERC2981, Readme {
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
+    event BatchMetadataUpdate(uint256 fromTokenId, uint256 toTokenId);
+
+    // ERC-5192 (recommended for gas efficiency)
+    event Locked(uint256 tokenId);    
 
     /// @notice Error thrown when trying to mint a token with a given id which is already minted
     error TokenAlreadyMinted();
@@ -229,7 +233,8 @@ interface IN2M_ERCCommon is IERC2981, Readme {
         CLOSED,
         PRESALE,
         DROP_DATE,
-        DROP_AND_END_DATE
+        DROP_AND_END_DATE,
+        END_DATE
     }
 
     enum MintingType { 
@@ -396,7 +401,7 @@ interface IN2M_ERCCommon is IERC2981, Readme {
     function withdraw() external payable;
     function changePlaceholderImageCID(bytes32 newPlaceholderImageCIDHash) external payable;
     function setPhase(SalePhase newPhase) external payable;
-    function setDropDate(uint256 dropDateTimestamp) external payable;
+    // function setDropDate(uint256 dropDateTimestamp) external payable;
     function setDropAndEndDate(uint256 dropDateTimestamp, uint256 endDateTimestamp) external payable;
     function setMaxPerAddress(uint16 newMaxPerAddress) external payable;
     function reduceCollectionSize(uint32 newCollectionSize) external payable;
