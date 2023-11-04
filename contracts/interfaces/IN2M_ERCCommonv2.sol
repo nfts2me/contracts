@@ -201,6 +201,7 @@ interface IN2M_ERCCommon is IERC2981, Readme {
         PLACEHOLDER_CID,
         BASEURI_STRING,
         DYNAMIC_NFT,
+        ANIMATION_URL_STRING,
         CUSTOM_URI
     }
 
@@ -210,7 +211,7 @@ interface IN2M_ERCCommon is IERC2981, Readme {
         TokenUriType uriType;
         address dynamicNFTAddress;
         address dynamicPriceAddress;
-        string baseURIOrPlaceholderString;
+        string baseURIString;
         string collectionDescription;
         RevenueAddress[] revenueAddresses;
         uint256[] dropAndEndDateTimestamps;
