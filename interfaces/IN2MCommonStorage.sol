@@ -37,8 +37,47 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.24;
 
-interface IN2MCrossFactory {
-    function ownerOf(uint256 tokenId) external view returns (address);
-    function getIPFSURI(bytes32 cidHash) external pure returns (string memory);
-    function transferCollectionOwnership(address to) external payable;
+import "../important/README.sol";
+
+interface IN2MCommonStorage is Readme {
+    struct RevenueAddress {
+        address to;
+        uint16 percentage;
+    }
+
+    struct AffiliateInformation {
+        bool enabled;
+        uint16 affiliatePercentage;
+        uint16 userDiscount;
+    }
+
+    struct TokenApprovalRef {
+        address value;
+    }
+
+    enum SalePhase { 
+        PUBLIC,
+        CLOSED,
+        PRESALE,
+        DROP_DATE,
+        DROP_AND_END_DATE,
+        END_DATE
+    }
+
+    enum MintingType { 
+        SEQUENTIAL, 
+        RANDOM,
+        SPECIFY, 
+        CUSTOM_URI,
+        SEQUENTIAL_EDITIONS
+    }
+
+    enum OperatorFilterStatus { 
+        DISABLED, 
+        ENABLED_ONLY_WHITELISTED
+    }
+
+    function withdrawnERC20Amount(address erc20) external view returns (uint256);
+    function pendingAffiliateBalance(address affiliate) external view returns (uint256);
+    function whitelistedOperators(address operator) external view returns (bool);
 }
