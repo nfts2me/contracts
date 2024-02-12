@@ -37,8 +37,36 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.24;
 
-interface IN2MCrossFactory {
-    function ownerOf(uint256 tokenId) external view returns (address);
-    function getIPFSURI(bytes32 cidHash) external pure returns (string memory);
-    function transferCollectionOwnership(address to) external payable;
+import "./IN2MCommon.sol";
+
+interface IN2MSequential is IN2MCommon {
+    /// @notice Mints one NFT to the caller (msg.sender). Requires `minting type` to be `sequential` and the `mintPrice` to be send (if `Native payment`) or approved (if `ERC-20` payment).
+    function mint() external payable;
+    function mintEfficientN2M_001Z5BWH() external payable;
+
+    /// @notice Mints `amount` NFTs to the caller (msg.sender). Requires `minting type` to be `sequential` and the `mintPrice` to be send (if `Native payment`) or approved (if `ERC-20` payment).
+    /// @param amount The number of NFTs to mint
+    function mint(uint256 amount) external payable;
+
+    /// @notice Mints `amount` NFTs to the caller (msg.sender) with a given `affiliate`. Requires `minting type` to be `sequential` and the `mintPrice` to be send (if `Native payment`) or approved (if `ERC-20` payment).
+    /// @param amount The number of NFTs to mint
+    /// @param affiliate The affiliate address
+    function mint(uint256 amount, address affiliate) external payable;
+
+    /// @notice Mints `amount` NFTs to `to` address. Requires `minting type` to be `sequential` and the `mintPrice` to be send (if `Native payment`) or approved (if `ERC-20` payment).
+    /// @param to The address of the NFTs receiver
+    /// @param amount The number of NFTs to mint    
+    function mintTo(address to, uint256 amount) external payable;
+
+    /// @notice Mints `amount` NFTs to `to` address with a given `affiliate`. Requires `minting type` to be `sequential` and the `mintPrice` to be send (if `Native payment`) or approved (if `ERC-20` payment).
+    /// @param to The address of the NFTs receiver
+    /// @param amount The number of NFTs to mint    
+    /// @param affiliate The affiliate address
+    function mintTo(address to, uint256 amount, address affiliate) external payable;
+
+    /// @notice Only owner can call this function. Free of charge. Mints sizeof(`to`) to `to` addresses. Requires `minting type` to be `sequential`.
+    /// @param toAndAmount The addresses of the NFTs receivers and amounts to mint
+    /// @param soulbound True if the NFT is a Soulbound Token (SBT). If set, it can't be transferred.
+    function airdropSequential(bytes32[] calldata toAndAmount, bool soulbound) external payable;
+
 }

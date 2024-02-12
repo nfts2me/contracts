@@ -37,8 +37,31 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.24;
 
-interface IN2MCrossFactory {
-    function ownerOf(uint256 tokenId) external view returns (address);
-    function getIPFSURI(bytes32 cidHash) external pure returns (string memory);
-    function transferCollectionOwnership(address to) external payable;
+import '../important/README.sol';
+
+interface IN2MMintmaster {
+    function mintWithNative(
+        address swapRouterAddress,
+        uint256 swapNativeAmount,
+        bytes calldata swapPayload,
+        address erc20CollectionPaymentAddress,
+        uint256 erc20CollectionPaymentAmount,
+        address collection,
+        uint256 nativeNativeAmount,
+        bytes calldata mintPayload
+    ) external payable;
+
+    function mintWithERC20(
+        address swapRouterAddress,
+        bytes calldata swapPayload,
+        uint256 swapERC20Amount,
+        address swapERC20Adress,
+        address allowanceTarget,
+        uint256 erc20CollectionPaymentAmount,
+        address erc20CollectionPaymentAddress,
+        address collection,
+        bytes calldata mintPayload,
+        uint256 nativeNativeAmount
+    ) external payable;
+
 }

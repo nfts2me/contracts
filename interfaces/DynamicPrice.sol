@@ -37,8 +37,7 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.24;
 
-interface IN2MCrossFactory {
-    function ownerOf(uint256 tokenId) external view returns (address);
-    function getIPFSURI(bytes32 cidHash) external pure returns (string memory);
-    function transferCollectionOwnership(address to) external payable;
+interface DynamicPrice {
+    function initMintPrice(bytes calldata initData) external payable;
+    function mintPrice(address minter, uint256 amount) external view returns (uint256);
 }
