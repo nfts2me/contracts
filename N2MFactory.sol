@@ -204,6 +204,30 @@ contract N2MFactory is
     }
 
     /**
+     * @dev Creates a new NFT collection.
+     * @param collectionInformation The information to create the collection.
+     * @param collectionId The unique identifier for the collection and deployment. Must contain the msg.sender.
+     * @param implementationType The type of implementation for the collection. Only 96 bits are considered.
+     */
+    function createCrossCollection(
+        bytes calldata collectionInformation,
+        bytes32 collectionId,
+        bytes32 implementationType
+    ) external payable containsCaller(collectionId) {
+        bytes memory initCode = LibClone.initCode(_implementationAddresses[implementationType]);
+        address collection = CREATE3.deploy(collectionId, initCode, 0);
+
+        (bool success, bytes memory returnData) = collection.call(collectionInformation);
+        if (!success) {
+            assembly {
+                revert(add(returnData, 32), mload(returnData))
+            }                
+        }
+
+        _mint(msg.sender, uint256(uint160((collection))));
+    }
+
+    /**
      * @dev Performs a delegated creation of a new NFT collection.
      * @param owner The owner of the NFT collection.
      * @param collectionInformation The collection information to create the collection.
