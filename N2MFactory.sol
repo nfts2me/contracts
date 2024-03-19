@@ -49,7 +49,6 @@ import {Ownable} from "solady/auth/Ownable.sol";
 import {IERC2981} from "openzeppelin/contracts/interfaces/IERC2981.sol";
 import {IERC20} from "openzeppelin/contracts/token/ERC20/IERC20.sol"; 
 import {IN2MFactory, IN2MCommon} from "./interfaces/IN2MFactory.sol";
-import {IN2MSequential} from "./interfaces/IN2MSequential.sol";
 import {N2MVersion, Readme} from "./N2MVersion.sol";
 import {IN2MCrossFactory} from "./interfaces/IN2MCrossFactory.sol";
 import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
