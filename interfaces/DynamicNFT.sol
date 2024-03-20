@@ -37,17 +37,9 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.25;
 
-import {IERC721Metadata} from "openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
-import {IERC721Errors} from "openzeppelin/contracts/interfaces/draft-IERC6093.sol";
-import {IN2MCommon} from "./IN2MCommon.sol";
-import {IN2MSequential} from "./IN2MSequential.sol";
-import {IN2MNonSequential} from "./IN2MNonSequential.sol";
+interface DynamicNFT {
+    function dynamicTokenURI(uint256 tokenId) external view returns (string memory);
+    function tokenUpdate(address from, address to, uint256 tokenId) external payable;
+    function tokenBulkUpdate(address from, address to, uint256 startTokenId, uint256 quantity) external payable;
 
-interface IN2MERC721 is IERC721Errors, IERC721Metadata, IN2MSequential, IN2MNonSequential {
-    function name() external view override(IERC721Metadata, IN2MCommon) returns (string memory);
-    function symbol() external view override(IERC721Metadata, IN2MCommon) returns (string memory);
-    function tokenURI(uint256 tokenId) external view override(IERC721Metadata) returns (string memory);
-    function owner() external view returns (address collectionOwner);
-    function burn(uint256 tokenId) external payable;
 }
-

@@ -37,17 +37,31 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.25;
 
-import {IERC721Metadata} from "openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
-import {IERC721Errors} from "openzeppelin/contracts/interfaces/draft-IERC6093.sol";
-import {IN2MCommon} from "./IN2MCommon.sol";
-import {IN2MSequential} from "./IN2MSequential.sol";
-import {IN2MNonSequential} from "./IN2MNonSequential.sol";
+import '../important/README.sol';
 
-interface IN2MERC721 is IERC721Errors, IERC721Metadata, IN2MSequential, IN2MNonSequential {
-    function name() external view override(IERC721Metadata, IN2MCommon) returns (string memory);
-    function symbol() external view override(IERC721Metadata, IN2MCommon) returns (string memory);
-    function tokenURI(uint256 tokenId) external view override(IERC721Metadata) returns (string memory);
-    function owner() external view returns (address collectionOwner);
-    function burn(uint256 tokenId) external payable;
+interface IN2MMintmaster {
+    function mintWithNative(
+        address swapRouterAddress,
+        uint256 swapNativeAmount,
+        bytes calldata swapPayload,
+        address erc20CollectionPaymentAddress,
+        uint256 erc20CollectionPaymentAmount,
+        address collection,
+        uint256 nativeNativeAmount,
+        bytes calldata mintPayload
+    ) external payable;
+
+    function mintWithERC20(
+        address swapRouterAddress,
+        bytes calldata swapPayload,
+        uint256 swapERC20Amount,
+        address swapERC20Adress,
+        address allowanceTarget,
+        uint256 erc20CollectionPaymentAmount,
+        address erc20CollectionPaymentAddress,
+        address collection,
+        bytes calldata mintPayload,
+        uint256 nativeNativeAmount
+    ) external payable;
+
 }
-

@@ -37,17 +37,47 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.25;
 
-import {IERC721Metadata} from "openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
-import {IERC721Errors} from "openzeppelin/contracts/interfaces/draft-IERC6093.sol";
-import {IN2MCommon} from "./IN2MCommon.sol";
-import {IN2MSequential} from "./IN2MSequential.sol";
-import {IN2MNonSequential} from "./IN2MNonSequential.sol";
+import "../important/README.sol";
 
-interface IN2MERC721 is IERC721Errors, IERC721Metadata, IN2MSequential, IN2MNonSequential {
-    function name() external view override(IERC721Metadata, IN2MCommon) returns (string memory);
-    function symbol() external view override(IERC721Metadata, IN2MCommon) returns (string memory);
-    function tokenURI(uint256 tokenId) external view override(IERC721Metadata) returns (string memory);
-    function owner() external view returns (address collectionOwner);
-    function burn(uint256 tokenId) external payable;
+interface IN2MCommonStorage is Readme {
+    struct RevenueAddress {
+        address to;
+        uint16 percentage;
+    }
+
+    struct AffiliateInformation {
+        bool enabled;
+        uint16 affiliatePercentage;
+        uint16 userDiscount;
+    }
+
+    struct TokenApprovalRef {
+        address value;
+    }
+
+    enum SalePhase { 
+        PUBLIC,
+        CLOSED,
+        PRESALE,
+        DROP_DATE,
+        DROP_AND_END_DATE,
+        END_DATE
+    }
+
+    enum MintingType { 
+        SEQUENTIAL, 
+        RANDOM,
+        SPECIFY, 
+        CUSTOM_URI,
+        SEQUENTIAL_EDITIONS
+    }
+
+    enum OperatorFilterStatus { 
+        DISABLED, 
+        ENABLED_ONLY_WHITELISTED
+    }
+
+    function withdrawnERC20Amount(address erc20) external view returns (uint256);
+    function pendingAffiliateBalance(address affiliate) external view returns (uint256);
+    function whitelistedOperators(address operator) external view returns (bool);
 }
-

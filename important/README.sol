@@ -37,17 +37,12 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.25;
 
-import {IERC721Metadata} from "openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
-import {IERC721Errors} from "openzeppelin/contracts/interfaces/draft-IERC6093.sol";
-import {IN2MCommon} from "./IN2MCommon.sol";
-import {IN2MSequential} from "./IN2MSequential.sol";
-import {IN2MNonSequential} from "./IN2MNonSequential.sol";
-
-interface IN2MERC721 is IERC721Errors, IERC721Metadata, IN2MSequential, IN2MNonSequential {
-    function name() external view override(IERC721Metadata, IN2MCommon) returns (string memory);
-    function symbol() external view override(IERC721Metadata, IN2MCommon) returns (string memory);
-    function tokenURI(uint256 tokenId) external view override(IERC721Metadata) returns (string memory);
-    function owner() external view returns (address collectionOwner);
-    function burn(uint256 tokenId) external payable;
-}
-
+/// @title NFTs2Me.com Smart Contracts README
+/// @author The NFTs2Me Team
+/// @notice Read our terms of service
+/// @custom:security-contact security@nfts2me.com
+/// @custom:terms-of-service https://nfts2me.com/terms-of-service/
+/// @custom:website https://nfts2me.com/
+interface Readme {
+    function n2mVersion() external pure returns (uint256);
+ }

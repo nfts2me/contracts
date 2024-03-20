@@ -37,17 +37,36 @@
 /// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.25;
 
-import {IERC721Metadata} from "openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
-import {IERC721Errors} from "openzeppelin/contracts/interfaces/draft-IERC6093.sol";
-import {IN2MCommon} from "./IN2MCommon.sol";
-import {IN2MSequential} from "./IN2MSequential.sol";
-import {IN2MNonSequential} from "./IN2MNonSequential.sol";
+import "./IN2MCommon.sol";
 
-interface IN2MERC721 is IERC721Errors, IERC721Metadata, IN2MSequential, IN2MNonSequential {
-    function name() external view override(IERC721Metadata, IN2MCommon) returns (string memory);
-    function symbol() external view override(IERC721Metadata, IN2MCommon) returns (string memory);
-    function tokenURI(uint256 tokenId) external view override(IERC721Metadata) returns (string memory);
-    function owner() external view returns (address collectionOwner);
-    function burn(uint256 tokenId) external payable;
+interface IN2MSequential is IN2MCommon {
+    /// @notice Mints one NFT to the caller (msg.sender). Requires `minting type` to be `sequential` and the `mintPrice` to be send (if `Native payment`) or approved (if `ERC-20` payment).
+    function mint() external payable;
+    function mintEfficientN2M_001Z5BWH() external payable;
+
+    /// @notice Mints `amount` NFTs to the caller (msg.sender). Requires `minting type` to be `sequential` and the `mintPrice` to be send (if `Native payment`) or approved (if `ERC-20` payment).
+    /// @param amount The number of NFTs to mint
+    function mint(uint256 amount) external payable;
+
+    /// @notice Mints `amount` NFTs to the caller (msg.sender) with a given `affiliate`. Requires `minting type` to be `sequential` and the `mintPrice` to be send (if `Native payment`) or approved (if `ERC-20` payment).
+    /// @param amount The number of NFTs to mint
+    /// @param affiliate The affiliate address
+    function mint(uint256 amount, address affiliate) external payable;
+
+    /// @notice Mints `amount` NFTs to `to` address. Requires `minting type` to be `sequential` and the `mintPrice` to be send (if `Native payment`) or approved (if `ERC-20` payment).
+    /// @param to The address of the NFTs receiver
+    /// @param amount The number of NFTs to mint    
+    function mintTo(address to, uint256 amount) external payable;
+
+    /// @notice Mints `amount` NFTs to `to` address with a given `affiliate`. Requires `minting type` to be `sequential` and the `mintPrice` to be send (if `Native payment`) or approved (if `ERC-20` payment).
+    /// @param to The address of the NFTs receiver
+    /// @param amount The number of NFTs to mint    
+    /// @param affiliate The affiliate address
+    function mintTo(address to, uint256 amount, address affiliate) external payable;
+
+    /// @notice Only owner can call this function. Free of charge. Mints sizeof(`to`) to `to` addresses. Requires `minting type` to be `sequential`.
+    /// @param toAndAmount The addresses of the NFTs receivers and amounts to mint
+    /// @param soulbound True if the NFT is a Soulbound Token (SBT). If set, it can't be transferred.
+    function airdropSequential(bytes32[] calldata toAndAmount, bool soulbound) external payable;
+
 }
-
